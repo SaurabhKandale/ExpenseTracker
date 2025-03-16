@@ -1,0 +1,7 @@
+package com.expensetracker.expensetracker.exceptions;
+
+public class AccountDoesNotExist extends RuntimeException {
+    public AccountDoesNotExist(String message) {
+        super(message);
+    }
+}
