@@ -299,7 +299,7 @@ const CreateNewExpense: FunctionComponent<CreateNewExpenseProps> = ({
         />
         <CustomInputField
           type={"time"}
-          fieldTitle={"Payment Date"}
+          fieldTitle={"Payment Time"}
           placeholder={""}
           onChange={(date: string) => {
             if (fieldError === "paymentTime") setFieldError("");

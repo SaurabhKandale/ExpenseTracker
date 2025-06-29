@@ -15,6 +15,7 @@
     "@types/react-dom": "^18.3.1",
     "axios": "^1.7.7",
     "iconsax-react": "^0.0.8",
+    "js-cookie": "^3.0.5",
     "react": "^18.3.1",
     "react-datepicker": "^7.5.0",
     "react-dom": "^18.3.1",
@@ -50,7 +51,8 @@
     ]
   },
   "devDependencies": {
-    "@chakra-ui/cli": "^3.2.0"
+    "@chakra-ui/cli": "^3.2.0",
+    "@types/js-cookie": "^3.0.6"
   },
   "proxy": "http://localhost:8081"
 }

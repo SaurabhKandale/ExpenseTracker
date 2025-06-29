@@ -1,6 +1,7 @@
 import { createBrowserRouter, redirect } from "react-router-dom";
 import App from "./Components/App/App";
 import UserLogin from "./Components/Login/UserLogin";
+import Cookies from "js-cookie";
 
 export const Router = createBrowserRouter([
   {
@@ -14,7 +15,7 @@ export const Router = createBrowserRouter([
     path: "/login",
     element: <UserLogin />,
     loader: () => {
-      if (localStorage.getItem("token")) {
+      if (Cookies.get("token")) {
         return redirect("/app/profile");
       }
       return true;

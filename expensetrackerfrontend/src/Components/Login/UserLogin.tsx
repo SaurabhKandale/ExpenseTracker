@@ -8,6 +8,8 @@ import useToastHook from "../../Hooks/useToastHook";
 import { apiService } from "../../Api/apiService";
 import useIsMobileHook from "../../Hooks/useIsMobileHook";
 import axios from "axios";
+import Cookies from "js-cookie";
+
 
 interface UserLoginProps {
   isSignUp?: boolean;
@@ -38,8 +40,7 @@ const UserLogin: FunctionComponent<UserLoginProps> = ({ isSignUp }) => {
           password: userPassword,
         }
       );
-      console.log(response);
-      localStorage.setItem("token", response.data.token);
+      Cookies.set("token", response.data.token, { expires: 7});
       navigate("/app/profile");
     } catch (err: any) {
       showToast({

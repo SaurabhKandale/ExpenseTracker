@@ -43,7 +43,7 @@ function App() {
     ? ["profile", "transactions", "add_expense", "add_income"]
     : [
         "profile",
-        "dashboard",
+        // "dashboard",
         "transactions",
         "add_expense",
         "add_income",
