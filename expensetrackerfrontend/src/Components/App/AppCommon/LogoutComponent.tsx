@@ -2,6 +2,7 @@ import { VStack, Text, HStack, Button } from "@chakra-ui/react";
 import { FunctionComponent, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 interface LogoutModalProps {}
 
@@ -13,7 +14,7 @@ const LogoutComponent: FunctionComponent<LogoutModalProps> = ({}) => {
     // handle logout
     setIsLoading(true);
     try {
-      await localStorage.removeItem("token");
+      Cookies.remove("token");
       navigate("/login");
     } catch (err) {
       console.log(err);
