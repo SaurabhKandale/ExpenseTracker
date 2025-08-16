@@ -34,7 +34,8 @@ const UserLogin: FunctionComponent<UserLoginProps> = ({ isSignUp }) => {
     setIsLoading(true);
     try {
       const response: any = await axios.post(
-        "http://localhost:8082/auth/login",
+        // "http://localhost:8082/auth/login",
+        "http://localhost:8088/auth/login",
         {
           email: userEmail.toLowerCase(),
           password: userPassword,
