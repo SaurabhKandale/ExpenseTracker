@@ -1,0 +1,16 @@
+
+model userData {
+  userId           String  @id @default(uuid()) @map("user_id")
+  userAge          Int @map("user_age")
+  userBirthDate   String  @map("user_birth_date")
+  userCreatedAt   String  @map("user_created_at")
+  userDisplayName String  @map("user_display_name")
+  userEmail        String  @unique @map("user_email")
+  userGender       String  @map("user_gender")
+  userPassword     String  @map("user_password")
+  userUpdatedAt   String  @map("user_updated_at")
+  userAccounts Account[] @relation("user_accounts")
+  userRecurringExpenses recurringExpense[] @relation("user_recurring_expenses")
+
+  @@map("user_data")
+}

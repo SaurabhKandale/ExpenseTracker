@@ -1,0 +1,15 @@
+model recurringExpense{
+    recurringExpenseId String @id @default(uuid()) @map("recurring_expense_id")
+    recurringExpenseTitle String @map("recurring_expense_title")
+    recurringExpenseCategory String @map("recurring_expense_category")
+    recurringExpenseAccountId String @map("recurring_expense_account_id")
+    recurringExpenseAmount Float @map("recurring_expense_amount")
+    userId String @map("user_id")
+
+    
+    // Relationship with userData
+    user userData @relation("user_recurring_expenses", fields: [userId], references: [userId])
+
+    @@map("recurring_expense")
+
+}

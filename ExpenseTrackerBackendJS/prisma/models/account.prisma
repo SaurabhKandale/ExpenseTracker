@@ -1,0 +1,13 @@
+model Account{
+    accountId String @id @default(uuid()) @map("account_id")
+    accountName String @unique @map("account_name")
+    monthlyIncome Float @map("monthly_income")
+    accountBalance Float @map("account_balance")          
+    accountStatus String @map("account_status")
+    userId String @map("user_id")
+    
+    // Relationship with userData
+    user userData @relation("user_accounts", fields: [userId], references: [userId])
+
+    @@map("account")
+}
