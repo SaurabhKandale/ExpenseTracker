@@ -51,7 +51,10 @@ const UserProfile: FunctionComponent<UserProfileProps> = () => {
   const handleRemoveAccount = async (accountId: string) => {
     try {
       setIsRemoveLoading(accountId);
-      await apiService.delete(`/account/remove/${accountId}`);
+      //Spring Boot Backend
+      // await apiService.delete(`/account/remove/${accountId}`);
+      // Node JS Backend
+      await apiService.put(`/account/remove/${accountId}`);
       dispatch(removeUserAccountById(accountId));
       setIsRemoveLoading("");
     } catch (err: any) {

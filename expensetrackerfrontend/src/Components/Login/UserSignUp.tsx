@@ -127,15 +127,17 @@ const UserSignUp: FunctionComponent = () => {
     }
     setIsLoading(true);
     try {
-      const response = await axios.post("http://localhost:8082/auth/signup", {
+      // const response = await axios.post("http://localhost:8082/auth/signup", {
+      const response = await axios.post("http://localhost:8088/auth/register", {
         username: `${firstName} ${lastName}`,
         email: email.toLowerCase(),
         password: password,
         gender: gender,
         birthDate: birthDate,
+
       });
       setIsLoading(false);
-      navigate("/login");
+      // navigate("/login");
       // console.log(response);
     } catch (err: any) {
       showToast({
@@ -143,7 +145,7 @@ const UserSignUp: FunctionComponent = () => {
         type: "error",
       });
 
-      navigate("/login");
+      // navigate("/login");
       setIsLoading(false);
       // console.log(err);
     }

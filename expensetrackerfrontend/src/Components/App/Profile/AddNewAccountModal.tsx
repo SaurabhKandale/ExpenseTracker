@@ -71,10 +71,11 @@ const AddNewAccountModal: FunctionComponent<AddNewAccountModalProps> = ({
       try {
         setIsLoading(true);
 
-        const accountResponse: any = await apiService.post("/account/add", {
+        // const accountResponse: any = await apiService.post("/account/add", {
+        const accountResponse:any = await apiService.post("/account/create", {
           accountName,
           monthlyIncome,
-          userId: userId,
+          // userId: userId,
         });
         showToast({
           description: "Account added successfully",
@@ -100,12 +101,17 @@ const AddNewAccountModal: FunctionComponent<AddNewAccountModalProps> = ({
       try {
         setIsLoading(true);
 
-        const accountResponse: any = await apiService.put(`/account/update`, {
-          accountName: accountName,
-          monthlyIncome: monthlyIncome,
-          accountId: accountDetails?.accountId,
-          userId: accountDetails?.userId,
-          accountBalance: accountDetails?.accountBalance,
+        // const accountResponse: any = await apiService.put(`/account/update`, {
+        //   accountName: accountName,
+        //   monthlyIncome: monthlyIncome,
+        //   accountId: accountDetails?.accountId,
+        //   userId: accountDetails?.userId,
+        //   accountBalance: accountDetails?.accountBalance,
+        // });
+
+        const accountResponse: any = await apiService.put(`/account/update/${accountDetails?.accountId}`, {
+          accountName,
+          monthlyIncome,
         });
 
         showToast({
