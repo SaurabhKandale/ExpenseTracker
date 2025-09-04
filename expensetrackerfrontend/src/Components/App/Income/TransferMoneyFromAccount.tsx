@@ -134,8 +134,7 @@ const TransferMoneyFromAccount: FunctionComponent<
             ...oldFromAccount,
             accountBalance:
               oldFromAccount.accountBalance -
-              transactionDetails?.transactionAmount +
-              (amount || 0),
+              ((amount || 0)-transactionDetails?.transactionAmount),
           })
         );
       }
@@ -194,11 +193,16 @@ const TransferMoneyFromAccount: FunctionComponent<
     setIsLoading(true);
     try {
       const response: any = isEdit
-        ? await apiService.put(`/transaction/update`, {
-            ...payload,
-            transactionId: transactionDetails?.transactionId,
-          })
-        : await apiService.post("/transaction/add", payload);
+        ? // ? await apiService.put(`/transaction/update`, {
+          //     ...payload,
+          //     transactionId: transactionDetails?.transactionId,
+          //   })
+          await apiService.put(
+            `/transaction/update/${transactionDetails?.transactionId}`,
+            payload
+          )
+        : // : await apiService.post("/transaction/add", payload);
+          await apiService.post("/transaction/create", payload);
       showToast({
         description: "Money transferred successfully.",
         type: "success",
@@ -256,7 +260,7 @@ const TransferMoneyFromAccount: FunctionComponent<
       justifyContent={"flex-start"}
       alignItems={"flex-start"}
       p={["24px", "24px 32px"]}
-      gap={["16px","24px"]}
+      gap={["16px", "24px"]}
       mb={[!isEdit ? "48px" : "0", ""]}
     >
       <Text fontWeight={500} fontSize={["sm", "md"]}>
@@ -324,7 +328,10 @@ const TransferMoneyFromAccount: FunctionComponent<
                       variant="Bold"
                     />
                   )}
-                  <Text fontSize={["custom-xs", "custom-sm"]} fontWeight={"medium"}>
+                  <Text
+                    fontSize={["custom-xs", "custom-sm"]}
+                    fontWeight={"medium"}
+                  >
                     {convertFirstLetterToCapital(account.accountName)}
                   </Text>
                 </HStack>
@@ -395,7 +402,10 @@ const TransferMoneyFromAccount: FunctionComponent<
                       variant="Bold"
                     />
                   )}
-                  <Text fontSize={["custom-xs", "custom-sm"]} fontWeight={"medium"}>
+                  <Text
+                    fontSize={["custom-xs", "custom-sm"]}
+                    fontWeight={"medium"}
+                  >
                     {convertFirstLetterToCapital(account.accountName)}
                   </Text>
                 </HStack>
@@ -416,7 +426,7 @@ const TransferMoneyFromAccount: FunctionComponent<
         size={["sm", "md"]}
         borderRadius={"12px"}
         onClick={!isLoading ? handleTranasferMoney : () => {}}
-        fontSize={['custom-xs','custom-sm']}
+        fontSize={["custom-xs", "custom-sm"]}
       >
         {isLoading ? <ThreeDots /> : isEdit ? "Transfer Money" : "Submit"}
       </Button>

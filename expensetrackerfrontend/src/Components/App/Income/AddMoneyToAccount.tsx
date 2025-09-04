@@ -148,11 +148,16 @@ const AddMoneyToAccount: FunctionComponent<AddMoneyToAccountProps> = ({
     setIsLoading(true);
     try {
       const response: any = isEdit
-        ? await apiService.put(`/transaction/update`, {
-            ...payLoad,
-            transactionId: transactionDetails?.transactionId,
-          })
-        : await apiService.post("/transaction/add", payLoad);
+        ? // ? await apiService.put(`/transaction/update`, {
+          //     ...payLoad,
+          //     transactionId: transactionDetails?.transactionId,
+          //   })
+          await apiService.put(
+            `/transaction/update/${transactionDetails?.transactionId}`,
+            payLoad
+          )
+        : // : await apiService.post("/transaction/add", payLoad);
+          await apiService.post("/transaction/create", payLoad);
       showToast({
         description: "Money added successfully.",
         type: "success",
@@ -257,7 +262,10 @@ const AddMoneyToAccount: FunctionComponent<AddMoneyToAccountProps> = ({
                       variant="Bold"
                     />
                   )}
-                  <Text fontSize={["custom-xs", "custom-sm"]} fontWeight={"medium"}>
+                  <Text
+                    fontSize={["custom-xs", "custom-sm"]}
+                    fontWeight={"medium"}
+                  >
                     {convertFirstLetterToCapital(account.accountName)}
                   </Text>
                 </HStack>
@@ -278,7 +286,7 @@ const AddMoneyToAccount: FunctionComponent<AddMoneyToAccountProps> = ({
         size={["sm", "md"]}
         borderRadius={"12px"}
         onClick={!isLoading ? handleAddMoneyToAccount : () => {}}
-        fontSize={['custom-xs', 'custom-sm']}
+        fontSize={["custom-xs", "custom-sm"]}
       >
         {isLoading ? (
           <ThreeDots height={"16px"} width={"16px"} color="white" />

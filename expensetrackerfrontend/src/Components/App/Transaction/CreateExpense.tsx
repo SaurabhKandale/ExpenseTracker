@@ -223,7 +223,10 @@ const CreateNewExpense: FunctionComponent<CreateNewExpenseProps> = ({
     const payLoad = {
       userId: userDetails.userId,
       transactionDate: date,
-      transactionAmount: paymentAmount || 0,
+      transactionAmount:
+        typeof paymentAmount === "string"
+          ? parseInt(paymentAmount)
+          : paymentAmount || 0,
       transactionCategory: selectedCategory,
       transactionDescription: description,
       accountId: selectedAccount,
@@ -233,11 +236,16 @@ const CreateNewExpense: FunctionComponent<CreateNewExpenseProps> = ({
     setIsLoading(true);
     try {
       const response: any = isEdit
-        ? await apiService.put(`/transaction/update`, {
-            ...payLoad,
-            transactionId: transactionDetails?.transactionId,
-          })
-        : await apiService.post("/transaction/add", payLoad);
+        ? // ? await apiService.put(`/transaction/update`, {
+          //     ...payLoad,
+          //     transactionId: transactionDetails?.transactionId,
+          //   })
+          await apiService.put(
+            `/transaction/update/${transactionDetails?.transactionId}`,
+            payLoad
+          )
+        : // : await apiService.post("/transaction/add", payLoad);
+          await apiService.post(`/transaction/create`, payLoad);
       showToast({
         description: isEdit
           ? "Expense updated successfully."
@@ -257,7 +265,7 @@ const CreateNewExpense: FunctionComponent<CreateNewExpenseProps> = ({
       setIsLoading(false);
       console.log(err);
     } finally {
-      handleCancel();
+      // handleCancel();
       isEdit && onClose && onClose();
     }
   };
@@ -270,12 +278,16 @@ const CreateNewExpense: FunctionComponent<CreateNewExpenseProps> = ({
       backgroundColor={"brand.100"}
       borderRadius={isEdit ? "0" : "24px"}
       p={isEdit ? "24px" : ["24px", "32px"]}
-      gap={["16px","24px"]}
+      gap={["16px", "24px"]}
       mb={[!isEdit ? "12" : "0", "0px"]}
       //   border={"1px solid black"}
     >
       {!isEdit && (
-        <Text fontSize={["custom-md", "custom-lg"]} fontWeight={"semibold"} width={"100%"}>
+        <Text
+          fontSize={["custom-md", "custom-lg"]}
+          fontWeight={"semibold"}
+          width={"100%"}
+        >
           Create New Expense
         </Text>
       )}
@@ -437,7 +449,10 @@ const CreateNewExpense: FunctionComponent<CreateNewExpenseProps> = ({
                       variant="Bold"
                     />
                   )}
-                  <Text fontSize={["custom-xs", "custom-sm"]} fontWeight={"medium"}>
+                  <Text
+                    fontSize={["custom-xs", "custom-sm"]}
+                    fontWeight={"medium"}
+                  >
                     {convertFirstLetterToCapital(account.accountName)}
                   </Text>
                 </HStack>
