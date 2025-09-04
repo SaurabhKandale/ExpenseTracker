@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import prisma from "../lib/prisma";
+import prisma from "../../lib/prisma";
 
 const createAccountService = async (request: Request, response: Response) => {
     const { accountName, monthlyIncome } = request.body;

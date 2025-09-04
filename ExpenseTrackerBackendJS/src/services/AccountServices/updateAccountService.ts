@@ -1,6 +1,6 @@
 import {Request, Response} from "express";
-import { Account } from "./types";
-import prisma from "../lib/prisma";
+import { Account } from "../../types";
+import prisma from "../../lib/prisma";
 
 const updateAccountService=async (request:Request, response: Response)=>{
     const {accountId} = request.params;

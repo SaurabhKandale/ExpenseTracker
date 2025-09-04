@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import prisma from "../lib/prisma";
+import prisma from "../../lib/prisma";
 
 const deleteAccountService=async (req:Request, res:Response)=>{
     const {accountId} = req.params;

@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { UserData } from "./types";
+import { UserData } from "../../types";
 import bcrypt from "bcryptjs";
-import prisma from "../lib/prisma";
-import config from "../config";
+import prisma from "../../lib/prisma";
+import config from "../../config";
 import jwt from "jsonwebtoken";
 
 const checkBasicValidation = (email: string, password: string): boolean => {
@@ -25,6 +25,7 @@ const loginUserService = async (request: Request, response: Response) => {
       },
       include: {
         userAccounts: true,
+        userRecurringExpenses: true,
       },
     });
 
