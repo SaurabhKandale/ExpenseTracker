@@ -1,0 +1,13 @@
+model Transaction{
+    transactionId String @unique @id @default(uuid()) @map("transaction_id")
+    transactionAmount Float @map("transaction_amount")
+    transactionCategory String @map("transaction_category")
+    transactionDescription String @map("transaction_description")
+    transactionDate String @map("transaction_date")
+    accountId String @map("account_id")
+    accountIdToWhichMoneyTransferred String @map("account_id_to_which_money_transferred")
+    userId String @map("user_id")
+    transactionType String @map("transaction_type")
+
+    @@map("transaction") 
+}

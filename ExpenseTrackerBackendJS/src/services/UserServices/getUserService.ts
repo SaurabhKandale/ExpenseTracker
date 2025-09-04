@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import prisma from "../lib/prisma";
+import prisma from "../../lib/prisma";
 
 const getUserService = async (request: Request, response: Response) => {
   try {
@@ -10,6 +10,7 @@ const getUserService = async (request: Request, response: Response) => {
       },
       include: {
         userAccounts: true,
+        userRecurringExpenses: true,
       },
     });
     

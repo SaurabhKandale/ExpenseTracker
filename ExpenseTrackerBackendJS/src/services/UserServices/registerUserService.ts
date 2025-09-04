@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { UserData, UserRegisterRequest } from "./types";
+import { UserData, UserRegisterRequest } from "../../types";
 import bcrypt from "bcryptjs";
-import prisma from "../lib/prisma";
+import prisma from "../../lib/prisma";
 
 const calculateAgeFromBirthDate = (birthDate:string):number => {
     const today = new Date();
