@@ -46,7 +46,8 @@ const RecurringExpensesListItem: FunctionComponent<
     setIsLoading(true);
     try {
       const response = await apiService.delete(
-        `/recurringExpense/remove/${expense.recurringExpenseId}`
+        // `/recurringExpense/remove/${expense.recurringExpenseId}`
+        `/recurringExpense/delete/${expense.recurringExpenseId}`
       );
       showToast({
         description: "Expense removed successfully",

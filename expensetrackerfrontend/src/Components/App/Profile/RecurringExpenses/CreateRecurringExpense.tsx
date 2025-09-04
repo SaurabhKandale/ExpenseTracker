@@ -62,7 +62,6 @@ const CreateRecurringExpense: FunctionComponent<CreateRecurringExpenseProps> = (
   const dispatch = useDispatchHook();
   const isMobile = useIsMobileHook();
 
-  console.log(userDetails.userId);
 
   const validate = () => {
     if (!expenseTitle.trim().length) {
@@ -121,12 +120,14 @@ const CreateRecurringExpense: FunctionComponent<CreateRecurringExpenseProps> = (
     setIsLoading(true);
     try {
       const response: any = isEdit
-        ? await apiService.put("/recurringExpense/update", {
+        // ? await apiService.put("/recurringExpense/update", {
+        ? await apiService.put(`/recurringExpense/update/${recurringExpenseDetails?.recurringExpenseId}`, {
             ...payload,
             recurringExpenseId: recurringExpenseDetails?.recurringExpenseId,
             userId: userDetails.userId,
           })
-        : await apiService.post("/recurringExpense/add", {
+        // : await apiService.post("/recurringExpense/add", {
+        :await apiService.post("/recurringExpense/create", {
             ...payload,
             recurringExpenseUserId: userDetails.userId,
           });

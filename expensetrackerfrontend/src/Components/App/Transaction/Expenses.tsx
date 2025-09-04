@@ -54,7 +54,8 @@ const Transactions: FunctionComponent<TransactionsProps> = ({
     setIsLoading(true);
     try {
       const response: MonthwiseTransactions = await apiService.get(
-        `/transaction/get/${date}/${userDetails.userId}`
+        // `/transaction/get/${date}/${userDetails.userId}`
+        `/transaction/get/${date}`
       );
       dispatch(addMonthwiseTransactions(response));
       setTimeout(() => {
