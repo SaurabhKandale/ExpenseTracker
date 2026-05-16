@@ -106,8 +106,9 @@ public class TransactionService {
     }
 
     public MonthwiseTransaction getMonthwiseTransactionsByUserId(String userId, String monthAndYear) {
-        List<Transaction> transactions;
-        transactions = transactionDao.getMonthlyTransactionsGroupedByDate(userId, monthAndYear).orElseThrow(() -> new RuntimeException("Monthly expense not found"));
+        List<Transaction> transactions = transactionDao
+                .getMonthlyTransactionsGroupedByDate(userId, monthAndYear)
+                .orElse(Collections.emptyList());
         return getMonthwiseTransactions(transactions, monthAndYear);
     }
 

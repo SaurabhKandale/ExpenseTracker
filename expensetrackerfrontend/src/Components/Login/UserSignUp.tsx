@@ -8,7 +8,6 @@ import useToastHook from "../../Hooks/useToastHook";
 import { ThreeDots } from "react-loader-spinner";
 import { Link, useNavigate } from "react-router-dom";
 import useIsMobileHook from "../../Hooks/useIsMobileHook";
-import axios from "axios";
 
 const UserSignUp: FunctionComponent = () => {
   const [firstName, setFirstName] = useState<string>("");
@@ -127,14 +126,12 @@ const UserSignUp: FunctionComponent = () => {
     }
     setIsLoading(true);
     try {
-      // const response = await axios.post("http://localhost:8082/auth/signup", {
-      const response = await axios.post("http://localhost:8088/auth/register", {
+      await apiService.post("/auth/register", {
         username: `${firstName} ${lastName}`,
         email: email.toLowerCase(),
         password: password,
         gender: gender,
         birthDate: birthDate,
-
       });
       setIsLoading(false);
       // navigate("/login");

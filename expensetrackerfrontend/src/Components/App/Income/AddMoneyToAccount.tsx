@@ -148,16 +148,11 @@ const AddMoneyToAccount: FunctionComponent<AddMoneyToAccountProps> = ({
     setIsLoading(true);
     try {
       const response: any = isEdit
-        ? // ? await apiService.put(`/transaction/update`, {
-          //     ...payLoad,
-          //     transactionId: transactionDetails?.transactionId,
-          //   })
-          await apiService.put(
+        ? await apiService.put(
             `/transaction/update/${transactionDetails?.transactionId}`,
             payLoad
           )
-        : // : await apiService.post("/transaction/add", payLoad);
-          await apiService.post("/transaction/create", payLoad);
+        : await apiService.post("/transaction/create", payLoad);
       showToast({
         description: "Money added successfully.",
         type: "success",

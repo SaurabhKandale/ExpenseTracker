@@ -68,11 +68,6 @@ const ExpenseListItem: FunctionComponent<ExpenseListItemsProps> = ({
           accountBalance:
             accountToWhichMoneyAdded.accountBalance -
             transactionData.transactionAmount,
-          // accountTransactions:
-          //   accountToWhichMoneyAdded.accountTransactions.filter(
-          //     (transaction) =>
-          //       transaction.transactionId !== transactionData.transactionId
-          //   ),
         };
         dispatch(updateUserAccountDetails(updatedAccount));
       }
@@ -88,11 +83,6 @@ const ExpenseListItem: FunctionComponent<ExpenseListItemsProps> = ({
           accountBalance:
             accountUsedForTransaction.accountBalance +
             transactionData.transactionAmount,
-          // accountTransactions:
-          //   accountUsedForTransaction.accountTransactions.filter(
-          //     (transaction) =>
-          //       transaction.transactionId !== transactionData.transactionId
-          //   ),
         };
         console.log("updatedAccount", updatedAccount);
         dispatch(updateUserAccountDetails(updatedAccount));
@@ -115,11 +105,6 @@ const ExpenseListItem: FunctionComponent<ExpenseListItemsProps> = ({
           accountBalance:
             accountFromWhichMoneyTransferred.accountBalance +
             transactionData.transactionAmount,
-          // accountTransactions:
-          //   accountFromWhichMoneyTransferred.accountTransactions.filter(
-          //     (transaction) =>
-          //       transaction.transactionId !== transactionData.transactionId
-          //   ),
         };
         dispatch(
           updateUserAccountDetails(updatedAccountFromWhichMoneyTransferred),
@@ -131,11 +116,6 @@ const ExpenseListItem: FunctionComponent<ExpenseListItemsProps> = ({
           accountBalance:
             accountToWhichMoneyTransferred.accountBalance -
             transactionData.transactionAmount,
-          // accountTransactions:
-          //   accountToWhichMoneyTransferred.accountTransactions.filter(
-          //     (transaction) =>
-          //       transaction.transactionId !== transactionData.transactionId
-          //   ),
         };
         dispatch(
           updateUserAccountDetails(updatedAccountToWhichMoneyTransferred),

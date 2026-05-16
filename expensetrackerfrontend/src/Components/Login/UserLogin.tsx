@@ -7,7 +7,6 @@ import { ThreeDots } from "react-loader-spinner";
 import useToastHook from "../../Hooks/useToastHook";
 import { apiService } from "../../Api/apiService";
 import useIsMobileHook from "../../Hooks/useIsMobileHook";
-import axios from "axios";
 import Cookies from "js-cookie";
 
 
@@ -33,15 +32,11 @@ const UserLogin: FunctionComponent<UserLoginProps> = ({ isSignUp }) => {
   const handleLoginFunction = async () => {
     setIsLoading(true);
     try {
-      const response: any = await axios.post(
-        // "http://localhost:8082/auth/login",
-        "http://localhost:8088/auth/login",
-        {
-          email: userEmail.toLowerCase(),
-          password: userPassword,
-        }
-      );
-      Cookies.set("token", response.data.token, { expires: 7});
+      const response: any = await apiService.post("/auth/login", {
+        email: userEmail.toLowerCase(),
+        password: userPassword,
+      });
+      Cookies.set("token", response.token, { expires: 7});
       navigate("/app/profile");
     } catch (err: any) {
       showToast({

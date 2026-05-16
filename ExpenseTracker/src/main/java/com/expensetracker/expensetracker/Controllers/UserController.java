@@ -21,7 +21,6 @@ public class UserController {
 
     @GetMapping("/me")
     public ResponseEntity<?> getUserData() {
-        System.out.println(1000);
         try {
             User userDetails = userService.getUserDetails();
             return new ResponseEntity<>(userDetails, HttpStatus.OK);

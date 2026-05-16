@@ -15,7 +15,6 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/auth")
 public class AuthController {
 
@@ -25,7 +24,7 @@ public class AuthController {
         this.authenticationService = authenticationService;
     }
 
-    @PostMapping("/signup")
+    @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody UserSignUpDto user) {
         try {
             User registeredUser = authenticationService.signUpUser(user);
@@ -48,4 +47,3 @@ public class AuthController {
     }
 
 }
-

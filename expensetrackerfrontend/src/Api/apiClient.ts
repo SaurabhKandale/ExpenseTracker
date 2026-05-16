@@ -1,12 +1,10 @@
 import axios, {
-  AxiosRequestConfig,
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from "axios";
 import Cookies from "js-cookie";
 
-// const API_BASE_URL = "http://localhost:8082/";
-const API_BASE_URL = "http://localhost:8088/";
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL ?? "";
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,

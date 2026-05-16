@@ -193,16 +193,11 @@ const TransferMoneyFromAccount: FunctionComponent<
     setIsLoading(true);
     try {
       const response: any = isEdit
-        ? // ? await apiService.put(`/transaction/update`, {
-          //     ...payload,
-          //     transactionId: transactionDetails?.transactionId,
-          //   })
-          await apiService.put(
+        ? await apiService.put(
             `/transaction/update/${transactionDetails?.transactionId}`,
             payload
           )
-        : // : await apiService.post("/transaction/add", payload);
-          await apiService.post("/transaction/create", payload);
+        : await apiService.post("/transaction/create", payload);
       showToast({
         description: "Money transferred successfully.",
         type: "success",
