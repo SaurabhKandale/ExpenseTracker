@@ -1,5 +1,6 @@
 import { HStack, Text } from "@chakra-ui/react";
 import { FunctionComponent } from "react";
+import ThemeSelector from "./ThemeSelector";
 
 interface CommonHeaderProps {
   title: string;
@@ -23,6 +24,7 @@ const CommonHeader: FunctionComponent<CommonHeaderProps> = ({
       <Text fontSize={["custom-md", "custom-lg"]} fontWeight={"semibold"} color={"white"}>
         {"Hi, " + title}
       </Text>
+      <ThemeSelector />
     </HStack>
   );
 };

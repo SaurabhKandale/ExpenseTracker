@@ -5,6 +5,7 @@ import {
   convertFirstLetterToCapital,
   convertToDateFormat,
   formatToRupees,
+  getTimeInputValueFromDate,
   mergeDateAndTimeToIST,
 } from "../../../utils";
 import { TickCircle } from "iconsax-react";
@@ -69,11 +70,9 @@ const CreateNewExpense: FunctionComponent<CreateNewExpenseProps> = ({
       : convertToDateFormat(new Date().toLocaleDateString())
   );
   const [paymentTime, setPaymentTime] = useState<string>(
-    isEdit
-      ? new Date(transactionDetails?.transactionDate || "")
-          .toLocaleTimeString()
-          .substring(0, 5)
-      : new Date().toLocaleTimeString().substring(0, 5)
+    isEdit && transactionDetails?.transactionDate
+      ? getTimeInputValueFromDate(transactionDetails.transactionDate)
+      : getTimeInputValueFromDate(new Date().toISOString())
   );
 
   const [paymentAmount, setPaymentAmount] = useState<number | undefined>(
@@ -317,7 +316,7 @@ const CreateNewExpense: FunctionComponent<CreateNewExpenseProps> = ({
             if (fieldError === "paymentTime") setFieldError("");
             setPaymentTime(date);
           }}
-          value={paymentTime.split("T")[0]}
+          value={paymentTime}
           isCreation={true}
           fieldError={fieldError === "paymentTime"}
         />

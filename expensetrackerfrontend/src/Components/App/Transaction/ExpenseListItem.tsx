@@ -59,7 +59,7 @@ const ExpenseListItem: FunctionComponent<ExpenseListItemsProps> = ({
         userDetails.userAccounts.find(
           (account) =>
             account.accountId ===
-            transactionData.accountIdToWhichMoneyTransferred
+            transactionData.accountIdToWhichMoneyTransferred,
         );
 
       if (accountToWhichMoneyAdded) {
@@ -79,7 +79,7 @@ const ExpenseListItem: FunctionComponent<ExpenseListItemsProps> = ({
     } else if (transactionData.transactionType === "DEBIT") {
       const accountUsedForTransaction: UserAccount | undefined =
         userDetails.userAccounts.find(
-          (account) => account.accountId === transactionData.accountId
+          (account) => account.accountId === transactionData.accountId,
         );
 
       if (accountUsedForTransaction) {
@@ -100,13 +100,13 @@ const ExpenseListItem: FunctionComponent<ExpenseListItemsProps> = ({
     } else {
       const accountFromWhichMoneyTransferred: UserAccount | undefined =
         userDetails.userAccounts.find(
-          (account) => account.accountId === transactionData.accountId
+          (account) => account.accountId === transactionData.accountId,
         );
       const accountToWhichMoneyTransferred: UserAccount | undefined =
         userDetails.userAccounts.find(
           (account) =>
             account.accountId ===
-            transactionData.accountIdToWhichMoneyTransferred
+            transactionData.accountIdToWhichMoneyTransferred,
         );
 
       if (accountFromWhichMoneyTransferred) {
@@ -122,7 +122,7 @@ const ExpenseListItem: FunctionComponent<ExpenseListItemsProps> = ({
           //   ),
         };
         dispatch(
-          updateUserAccountDetails(updatedAccountFromWhichMoneyTransferred)
+          updateUserAccountDetails(updatedAccountFromWhichMoneyTransferred),
         );
       }
       if (accountToWhichMoneyTransferred) {
@@ -138,7 +138,7 @@ const ExpenseListItem: FunctionComponent<ExpenseListItemsProps> = ({
           //   ),
         };
         dispatch(
-          updateUserAccountDetails(updatedAccountToWhichMoneyTransferred)
+          updateUserAccountDetails(updatedAccountToWhichMoneyTransferred),
         );
       }
     }
@@ -148,7 +148,7 @@ const ExpenseListItem: FunctionComponent<ExpenseListItemsProps> = ({
     try {
       setIsLoading(true);
       await apiService.delete(
-        `/transaction/remove/${transactionData.transactionId}`
+        `/transaction/remove/${transactionData.transactionId}`,
       );
       showToast({
         description: "Transaction deleted successfully.",
@@ -290,7 +290,7 @@ const ExpenseListItem: FunctionComponent<ExpenseListItemsProps> = ({
         )}
         <Text fontSize={["custom-sm", "custom-md"]}>
           {convertFirstLetterToCapital(
-            transactionData.transactionType.toLowerCase()
+            transactionData.transactionType.toLowerCase(),
           )}
         </Text>
       </TransactionListItemSingleBlock>

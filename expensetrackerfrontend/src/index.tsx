@@ -2,13 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import { ChakraProvider } from "@chakra-ui/react";
 import { RouterProvider } from "react-router-dom";
-import { system } from "./theme";
 import { Toaster } from "./Components/ui/toaster";
 import { Router } from "./routes";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
+import { ThemeProvider } from "./context/ThemeContext";
 import "react-datepicker/dist/react-datepicker.css";
 
 const root = ReactDOM.createRoot(
@@ -17,12 +16,12 @@ const root = ReactDOM.createRoot(
 
 root.render(
   // <React.StrictMode>
-    <ChakraProvider value={system}>
+    <ThemeProvider>
       <Toaster />
       <Provider store={store}>
         <RouterProvider router={Router} />
       </Provider>
-    </ChakraProvider>
+    </ThemeProvider>
   // </React.StrictMode>
 );
 
