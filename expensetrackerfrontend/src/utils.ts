@@ -43,6 +43,14 @@ export const getTimeFromDate = (dateString: string) => {
   return `${hours}:${minutes} ${ampm}`;
 };
 
+/** 24-hour HH:mm for <input type="time"> */
+export const getTimeInputValueFromDate = (dateString: string) => {
+  const date = new Date(dateString);
+  const hours = date.getHours().toString().padStart(2, "0");
+  const minutes = date.getMinutes().toString().padStart(2, "0");
+  return `${hours}:${minutes}`;
+};
+
 export const getDayFromDate = (dateString: string) => {
   const date = new Date(dateString);
   return date.getDay();

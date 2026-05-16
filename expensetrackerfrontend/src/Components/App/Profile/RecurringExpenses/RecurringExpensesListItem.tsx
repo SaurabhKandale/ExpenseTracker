@@ -77,7 +77,7 @@ const RecurringExpensesListItem: FunctionComponent<
     };
 
     try {
-      const response: any = await apiService.post("/transaction/add", payload);
+      const response: any = await apiService.post("/transaction/create", payload);
       setIsAdding(false);
       setIsConfirmForAddModalOpen(false);
       showToast({
